@@ -1,0 +1,27 @@
+{
+  "name": "@electron/build-tools",
+  "version": "1.0.0",
+  "description": "A wrapper toolkit for working with Electron.js source code",
+  "main": "index.js",
+  "bin": {
+    "e": "./run.sh"
+  },
+  "scripts": {
+    "preinstall": "node preinstall.js",
+    "lint": "prettier --check preinstall.js",
+    "prettier:write": "prettier --write preinstall.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/electron/build-tools-installer.git"
+  },
+  "author": "Shelley Vohr <shelley.vohr@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/electron/build-tools-installer/issues"
+  },
+  "homepage": "https://github.com/electron/build-tools-installer#readme",
+  "devDependencies": {
+    "prettier": "^1.19.1"
+  }
+}
