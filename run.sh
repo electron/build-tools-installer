@@ -1,3 +1,3 @@
 #!/bin/bash
 
-$HOME/.electron_build_tools/src/e
+$HOME/.electron_build_tools/src/e "$@"
