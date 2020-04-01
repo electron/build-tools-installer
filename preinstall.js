@@ -13,7 +13,7 @@ function install() {
     execSync(`git clone -q ${BUILD_TOOLS_URL} ${installPath}`, { stdio: 'inherit' });
 
     // Install build-tools deps.
-    execSync('yarn install', { stdio: 'inherit', cwd: installPath });
+    execSync('npx yarn install', { stdio: 'inherit', cwd: installPath });
   } catch (err) {
     console.error('Failed to install build-tools: ', err);
   }
