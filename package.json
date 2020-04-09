@@ -4,7 +4,7 @@
   "description": "A wrapper toolkit for working with Electron.js source code",
   "main": "index.js",
   "bin": {
-    "e": "./run.sh"
+    "e": "./run.js"
   },
   "scripts": {
     "preinstall": "node preinstall.js",
@@ -23,5 +23,8 @@
   "homepage": "https://github.com/electron/build-tools-installer#readme",
   "devDependencies": {
     "prettier": "^1.19.1"
+  },
+  "dependencies": {
+    "rimraf": "^3.0.2"
   }
 }
