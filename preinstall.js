@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 
-const { existsSync } = require('fs');
+const { existsSync, rmdirSync } = require('fs');
 const { spawnSync } = require('child_process');
 const { homedir } = require('os');
 const path = require('path');
-const rimraf = require('rimraf');
 
 function throwForBadSpawn(basicInfo, spawnSyncResult) {
   if (spawnSyncResult.status !== 0) {
@@ -54,7 +53,7 @@ function install() {
 
     // Delete cloned repo to prevent retry failure.
     if (existsSync(installPath)) {
-      rimraf.sync(installPath);
+      rmdirSync(installPath, { recursive: true });
     }
   }
 }
