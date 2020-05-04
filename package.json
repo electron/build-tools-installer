@@ -8,8 +8,9 @@
   },
   "scripts": {
     "preinstall": "node preinstall.js",
-    "lint": "prettier --check preinstall.js",
-    "prettier:write": "prettier --write preinstall.js"
+    "lint": "prettier --check **/*.js",
+    "prettier:write": "prettier --write **/*.js",
+    "test": "npx mocha --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,8 @@
   },
   "homepage": "https://github.com/electron/build-tools-installer#readme",
   "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.1.2",
     "prettier": "^1.19.1"
   },
   "dependencies": {
