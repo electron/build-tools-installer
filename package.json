@@ -4,7 +4,8 @@
   "description": "A wrapper toolkit for working with Electron.js source code",
   "main": "index.js",
   "bin": {
-    "e": "./run.js"
+    "e": "./run.js",
+    "electron-build-tools": "./run.js"
   },
   "scripts": {
     "preinstall": "node preinstall.js",
