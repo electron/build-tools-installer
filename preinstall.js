@@ -55,6 +55,9 @@ function install() {
     if (existsSync(installPath)) {
       rmdirSync(installPath, { recursive: true });
     }
+
+    // Set the exit code to an error so npm will also show the error instead of failing silently.
+    process.exitCode = 1;
   }
 }
 
