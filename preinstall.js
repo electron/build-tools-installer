@@ -23,12 +23,12 @@ function install() {
         spawnSync('git', ['fetch'], { stdio: 'inherit', cwd: installPath }),
       );
       throwForBadSpawn(
-        'git checkout master',
-        spawnSync('git', ['checkout', 'master', '-f'], { stdio: 'inherit', cwd: installPath }),
+        'git checkout main',
+        spawnSync('git', ['checkout', 'main', '-f'], { stdio: 'inherit', cwd: installPath }),
       );
       throwForBadSpawn(
         'git reset',
-        spawnSync('git', ['reset', '--hard', 'origin/master'], {
+        spawnSync('git', ['reset', '--hard', 'origin/main'], {
           stdio: 'inherit',
           cwd: installPath,
         }),
