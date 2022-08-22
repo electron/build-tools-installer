@@ -1,6 +1,6 @@
 {
   "name": "@electron/build-tools",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "A wrapper toolkit for working with Electron.js source code",
   "main": "index.js",
   "bin": {
