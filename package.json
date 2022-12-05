@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/electron/build-tools-installer#readme",
   "devDependencies": {
-    "mocha": "^7.1.2",
+    "mocha": "^10.1.0",
     "prettier": "^1.19.1"
   }
 }

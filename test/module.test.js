@@ -18,4 +18,4 @@ it('adds e to the user PATH', () => {
 it('can execute e', () => {
   const info = execSync('e --help');
   assert.match(info.toString(), /Electron build tool/);
-});
+}).timeout(10000);
