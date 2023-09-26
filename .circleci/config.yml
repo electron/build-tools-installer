@@ -1,0 +1,42 @@
+version: 2.1
+
+orbs:
+  cfa: continuousauth/npm@1.0.2
+  node: electronjs/node@1.4.1
+
+workflows:
+  test_and_release:
+    # Run the test jobs first, then the release only when all the test jobs are successful
+    jobs:
+      - node/test:
+          name: test-<< matrix.executor >>-<< matrix.node-version >>
+          pre-steps:
+            - run: git config --global core.autocrlf input
+          test-steps:
+            - run: yarn run lint
+            - run:
+                name: Test
+                command: |
+                  npm install -g .
+                  npm test
+          use-test-steps: true
+          matrix:
+            alias: test
+            parameters:
+              executor:
+                - node/linux
+                - node/macos
+                - node/windows
+              node-version:
+                - '20.8'
+                - '18.18'
+                - '16.20'
+                - '14.21'
+      - cfa/release:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - main
+          context: cfa-release
