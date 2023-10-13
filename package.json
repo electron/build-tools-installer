@@ -9,8 +9,8 @@
   },
   "scripts": {
     "preinstall": "node preinstall.js",
-    "lint": "prettier --check '**/*.js'",
-    "prettier:write": "prettier --write '**/*.js'",
+    "lint": "prettier --check \"**/*.js\"",
+    "prettier:write": "prettier --write \"**/*.js\"",
     "test": "npx mocha --reporter spec"
   },
   "repository": {
