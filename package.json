@@ -1,12 +1,16 @@
 {
   "name": "@electron/build-tools",
-  "version": "1.1.0",
+  "version": "0.0.0-development",
   "description": "A wrapper toolkit for working with Electron.js source code",
   "main": "index.js",
   "bin": {
     "e": "./run.js",
     "electron-build-tools": "./run.js"
   },
+  "files": [
+    "preinstall.js",
+    "run.js"
+  ],
   "scripts": {
     "preinstall": "node preinstall.js",
     "lint": "prettier --check \"**/*.js\"",
@@ -24,7 +28,11 @@
   },
   "homepage": "https://github.com/electron/build-tools-installer#readme",
   "devDependencies": {
+    "@continuous-auth/semantic-release-npm": "^3.0.0",
     "mocha": "^10.1.0",
     "prettier": "^1.19.1"
+  },
+  "resolutions": {
+    "jackspeak": "2.1.1"
   }
 }
