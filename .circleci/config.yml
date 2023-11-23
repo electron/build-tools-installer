@@ -31,7 +31,6 @@ workflows:
                 - '20.8'
                 - '18.18'
                 - '16.20'
-                - '14.21'
       - cfa/release:
           requires:
             - test
