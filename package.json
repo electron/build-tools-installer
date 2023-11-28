@@ -28,7 +28,6 @@
   },
   "homepage": "https://github.com/electron/build-tools-installer#readme",
   "devDependencies": {
-    "@continuous-auth/semantic-release-npm": "^3.0.0",
     "mocha": "^10.1.0",
     "prettier": "^1.19.1"
   },
