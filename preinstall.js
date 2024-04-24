@@ -5,6 +5,8 @@ const { spawnSync } = require('child_process');
 const { homedir } = require('os');
 const path = require('path');
 
+const isWin = process.platform === 'win32';
+
 function throwForBadSpawn(basicInfo, spawnSyncResult) {
   if (spawnSyncResult.status !== 0) {
     throw new Error(`Command "${basicInfo}" failed with exit code ${spawnSyncResult.status}`);
@@ -17,21 +19,11 @@ function install() {
 
   try {
     // Clone build-tools into user homedir
-    if (existsSync(installPath)) {
+    const alreadyCloned = existsSync(installPath);
+    if (alreadyCloned) {
       throwForBadSpawn(
         'git fetch',
         spawnSync('git', ['fetch'], { stdio: 'inherit', cwd: installPath }),
-      );
-      throwForBadSpawn(
-        'git checkout main',
-        spawnSync('git', ['checkout', 'main', '-f'], { stdio: 'inherit', cwd: installPath }),
-      );
-      throwForBadSpawn(
-        'git reset',
-        spawnSync('git', ['reset', '--hard', 'origin/main'], {
-          stdio: 'inherit',
-          cwd: installPath,
-        }),
       );
     } else {
       throwForBadSpawn(
@@ -40,12 +32,33 @@ function install() {
       );
     }
 
+    const shouldCheckout = !alreadyCloned || !!process.env.BUILD_TOOLS_SHA;
+    if (shouldCheckout) {
+      const checkoutSha = process.env.BUILD_TOOLS_SHA ?? 'main';
+      throwForBadSpawn(
+        `git checkout ${checkoutSha}`,
+        spawnSync('git', ['checkout', checkoutSha, '-f'], { stdio: 'inherit', cwd: installPath }),
+      );
+      throwForBadSpawn(
+        'git reset',
+        spawnSync(
+          'git',
+          ['reset', '--hard', `${checkoutSha === 'main' ? 'origin/main' : checkoutSha}`],
+          {
+            stdio: 'inherit',
+            cwd: installPath,
+          },
+        ),
+      );
+    }
+
     // Install build-tools deps.
     throwForBadSpawn(
       'yarn install',
-      spawnSync(`npx${process.platform === 'win32' ? '.cmd' : ''}`, ['yarn', 'install'], {
+      spawnSync(`npx${isWin ? '.cmd' : ''}`, ['yarn', 'install'], {
         stdio: 'inherit',
         cwd: installPath,
+        shell: isWin,
       }),
     );
   } catch (err) {
