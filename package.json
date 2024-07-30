@@ -11,6 +11,9 @@
     "preinstall.js",
     "run.js"
   ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "scripts": {
     "preinstall": "node preinstall.js",
     "lint": "prettier --check \"**/*.js\"",
