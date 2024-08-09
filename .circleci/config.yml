@@ -30,7 +30,6 @@ workflows:
               node-version:
                 - '20.8'
                 - '18.18'
-                - '16.20'
       - cfa/release:
           requires:
             - test
