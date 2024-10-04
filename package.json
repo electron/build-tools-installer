@@ -32,7 +32,7 @@
   "homepage": "https://github.com/electron/build-tools-installer#readme",
   "devDependencies": {
     "mocha": "^10.1.0",
-    "prettier": "^1.19.1"
+    "prettier": "^3.3.3"
   },
   "resolutions": {
     "jackspeak": "2.1.1"
