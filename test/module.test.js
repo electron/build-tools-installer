@@ -1,8 +1,9 @@
-const assert = require('assert');
-const { homedir } = require('os');
-const { existsSync } = require('fs');
-const { execSync } = require('child_process');
-const { resolve } = require('path');
+const assert = require('node:assert');
+const { execSync } = require('node:child_process');
+const { existsSync } = require('node:fs');
+const { resolve } = require('node:path');
+const { homedir } = require('node:os');
+const { it } = require('node:test');
 
 it('installs build-tools to the home directory', () => {
   const buildToolsDir = resolve(homedir(), '.electron_build_tools');
@@ -18,4 +19,4 @@ it('adds e to the user PATH', () => {
 it('can execute e', () => {
   const info = execSync('e --help');
   assert.match(info.toString(), /Electron build tool/);
-}).timeout(30000);
+});

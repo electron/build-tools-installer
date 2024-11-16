@@ -12,13 +12,13 @@
     "run.js"
   ],
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">= 18.0.0"
   },
   "scripts": {
     "preinstall": "node preinstall.js",
     "lint": "prettier --check \"**/*.js\"",
     "prettier:write": "prettier --write \"**/*.js\"",
-    "test": "npx mocha --reporter spec"
+    "test": "node --test"
   },
   "repository": {
     "type": "git",
@@ -34,7 +34,6 @@
     "provenance": true
   },
   "devDependencies": {
-    "mocha": "^10.1.0",
     "prettier": "^3.3.3"
   }
 }
