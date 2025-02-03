@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { existsSync, rmdirSync } = require('fs');
+const { existsSync, rmSync } = require('fs');
 const { spawnSync } = require('child_process');
 const { homedir } = require('os');
 const path = require('path');
@@ -66,7 +66,7 @@ function install() {
 
     // Delete cloned repo to prevent retry failure.
     if (existsSync(installPath)) {
-      rmdirSync(installPath, { recursive: true });
+      rmSync(installPath, { recursive: true, force: true });
     }
 
     // Set the exit code to an error so npm will also show the error instead of failing silently.
