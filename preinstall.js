@@ -2,8 +2,9 @@
 
 const { existsSync, rmSync } = require('fs');
 const { spawnSync } = require('child_process');
-const { homedir } = require('os');
 const path = require('path');
+
+const installPath = require('./path');
 
 const isWin = process.platform === 'win32';
 
@@ -14,7 +15,6 @@ function throwForBadSpawn(basicInfo, spawnSyncResult) {
 }
 
 function install() {
-  const installPath = path.resolve(homedir(), '.electron_build_tools');
   const BUILD_TOOLS_URL = 'https://github.com/electron/build-tools';
 
   try {
