@@ -9,7 +9,8 @@
   },
   "files": [
     "preinstall.js",
-    "run.js"
+    "run.js",
+    "path.js"
   ],
   "engines": {
     "node": ">= 18.0.0"
