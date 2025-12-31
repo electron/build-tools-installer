@@ -1,17 +1,19 @@
 #!/usr/bin/env node
 
-const { existsSync, realpathSync } = require('fs');
-const { homedir } = require('os');
-const { resolve } = require('path');
+import { existsSync, realpathSync } from 'fs';
+import { resolve } from 'path';
 
-const installPath = require('./path');
+import installPath from './path.js';
 
 const ePath = resolve(installPath, 'src', 'e');
 process.argv = process.argv.map((arg) => {
   if (existsSync(arg)) {
-    return realpathSync(arg) === realpathSync(__filename) ? ePath : arg;
+    return realpathSync(arg) === realpathSync(import.meta.filename) ? ePath : arg;
   }
   return arg;
 });
 
-require(ePath);
+import(ePath).catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

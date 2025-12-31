@@ -1,5 +1,4 @@
-const { homedir } = require('os');
-const path = require('path');
+import { homedir } from 'os';
+import { resolve } from 'path';
 
-module.exports =
-  process.env.ELECTRON_BUILD_TOOLS_ROOT || path.resolve(homedir(), '.electron_build_tools');
+export default process.env.ELECTRON_BUILD_TOOLS_ROOT || resolve(homedir(), '.electron_build_tools');
