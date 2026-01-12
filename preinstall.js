@@ -62,7 +62,6 @@ function install() {
       spawnSync(process.execPath, [yarnPath, 'install'], {
         stdio: 'inherit',
         cwd: installPath,
-        shell: isWin,
       }),
     );
   } catch (err) {
