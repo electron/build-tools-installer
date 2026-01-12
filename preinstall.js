@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-const { existsSync, rmSync } = require('fs');
-const { spawnSync } = require('child_process');
-const path = require('path');
+import { existsSync, readdirSync, rmSync } from 'fs';
+import { spawnSync } from 'child_process';
 
-const installPath = require('./path');
+import installPath from './path.js';
+import path from 'path';
 
 const isWin = process.platform === 'win32';
 
@@ -53,9 +53,13 @@ function install() {
     }
 
     // Install build-tools deps.
+    const yarnReleasesDir = path.resolve(installPath, '.yarn', 'releases');
+    const yarnToUse = readdirSync(yarnReleasesDir).find((f) => /^yarn-.+js/.test(f));
+    const yarnPath = path.resolve(yarnReleasesDir, yarnToUse);
+
     throwForBadSpawn(
       'yarn install',
-      spawnSync(`npx${isWin ? '.cmd' : ''}`, ['yarn', 'install'], {
+      spawnSync(process.execPath, [yarnPath, 'install'], {
         stdio: 'inherit',
         cwd: installPath,
         shell: isWin,
