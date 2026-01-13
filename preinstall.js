@@ -8,6 +8,17 @@ import path from 'path';
 
 const isWin = process.platform === 'win32';
 
+// Check if running as root on Linux/macOS and abort if so.
+// See: https://github.com/electron/build-tools/issues/789.
+if (!isWin && process.getuid?.() === 0) {
+  console.error(
+    'Do not install @electron/build-tools with sudo, as this causes issues for standard users.\n\n' +
+      'Please install Node.js via a version manager (e.g., nvm, fnm, or Homebrew) to\n' +
+      'avoid needing sudo for global npm installs.\n',
+  );
+  process.exit(1);
+}
+
 function throwForBadSpawn(basicInfo, spawnSyncResult) {
   if (spawnSyncResult.status !== 0) {
     throw new Error(`Command "${basicInfo}" failed with exit code ${spawnSyncResult.status}`);
