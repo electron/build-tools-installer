@@ -10,6 +10,8 @@ const isWin = process.platform === 'win32';
 
 // Check if running as root on Linux/macOS and abort if so.
 // See: https://github.com/electron/build-tools/issues/789.
+// This check will not run in CI since CI sometimes needs
+// to run as root
 if (!process.env.CI && !isWin && process.getuid?.() === 0) {
   console.error(
     'Do not install @electron/build-tools with sudo, as this causes issues for standard users.\n\n' +
