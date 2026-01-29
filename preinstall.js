@@ -10,7 +10,7 @@ const isWin = process.platform === 'win32';
 
 // Check if running as root on Linux/macOS and abort if so.
 // See: https://github.com/electron/build-tools/issues/789.
-if (!isWin && process.getuid?.() === 0) {
+if (!process.env.CI && !isWin && process.getuid?.() === 0) {
   console.error(
     'Do not install @electron/build-tools with sudo, as this causes issues for standard users.\n\n' +
       'Please install Node.js via a version manager (e.g., nvm, fnm, or Homebrew) to\n' +
