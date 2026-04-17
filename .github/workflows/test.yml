@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - '22.12.x'
+          - '22.x'
         os:
           - macos-latest
           - ubuntu-latest
