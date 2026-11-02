@@ -39,6 +39,6 @@ jobs:
       - name: Lint
         run: yarn lint
       - name: Test
-        run: |
+        run: | # zizmor: ignore[adhoc-packages]
           npm install -g .
           npm test
